@@ -35,6 +35,7 @@ namespace RabbitMQ.Infra.MessageBroker
                 {
                     Logger.LogError("Erro ao desserializar mensagem", ex.Message);
 
+                    //TODO: Adicionar fila de DLQ
                     Channel.BasicNack(ea.DeliveryTag, multiple: false, requeue: false);
                 }
             });
