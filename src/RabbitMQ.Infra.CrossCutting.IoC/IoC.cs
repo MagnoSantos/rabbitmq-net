@@ -12,7 +12,8 @@ namespace RabbitMQ.Infra.CrossCutting.IoC
         {
             services.Configure<RabbitMQOptions>(configuration.GetSection(RabbitMQOptions.RabbitConfig));
 
-            services.AddScoped<IQueueConsumer, QueueConsumer>()
+            services.AddScoped<IQueueFactory, QueueFactory>()
+                    .AddScoped<IQueueConsumer, QueueConsumer>()
                     .AddScoped<IQueueProducer, QueueProducer>();
 
             return services;

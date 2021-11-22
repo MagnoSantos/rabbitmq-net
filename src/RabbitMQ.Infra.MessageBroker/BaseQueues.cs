@@ -6,7 +6,7 @@ using System;
 
 namespace RabbitMQ.Infra.MessageBroker
 {
-    public abstract class BaseQueues
+    public abstract class BaseQueues : IDisposable
     {
         protected readonly ILogger Logger;
         protected readonly RabbitMQOptions Options;
@@ -37,8 +37,18 @@ namespace RabbitMQ.Infra.MessageBroker
             }
             catch (Exception ex)
             {
-                Logger.LogError(message: $"Erro ao inicializar conexão, message: {ex.Message}");
+                Logger.LogError("Erro ao inicializar conexão {message}", ex.Message);
             }
+        }
+
+        public void Dispose()
+        {
+            Logger.LogInformation("Fechando conexão com o RabbitMQ");
+            Channel.Close();
+            Channel.Dispose();
+            Connection.Close();
+            Connection.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

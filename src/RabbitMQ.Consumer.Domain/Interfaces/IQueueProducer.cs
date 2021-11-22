@@ -2,5 +2,6 @@
 {
     public interface IQueueProducer
     {
+        void Send(string message);
     }
 }

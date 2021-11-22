@@ -10,6 +10,7 @@
         public string Password { get; init; }
         public string HostName { get; init; }
         public string VirtualHost { get; init; }
+        public int Port { get; init; }
 
         #endregion Creditials
 

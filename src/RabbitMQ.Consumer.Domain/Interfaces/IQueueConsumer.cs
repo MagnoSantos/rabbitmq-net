@@ -2,5 +2,6 @@
 {
     public interface IQueueConsumer
     {
+        void Subscribe<TMessage>();
     }
 }

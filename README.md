@@ -31,7 +31,18 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 - **Durável ou não durável:** A fila persiste entre *restarts* do RabbitMQ?
 - **Exclusiva ou não exclusiva:** somente 1 consumidos poderá consumir a fila, e quando o consumidor cair a fila será deletada. 
 
-# Exemplo 1
+## Desconexão com RabbitMQ - *API Guide*
+
+Para desconectar, basta fechar o canal e a conexão: 
+
+```cs
+channel.Close();
+conn.Close();
+```
+
+Realizar o *dispose* dos objetos de um canal e conexão não são suficientes, eles devem ser feachados explicitamente com os métodos de API do exemplo acima. 
+
+## Exemplo 1
  
 Retirado da [documentação](https://www.rabbitmq.com/tutorials/tutorial-one-dotnet.html) exemplo contendo um produtor que envia uma única mensagem e um consumidor que recebe as mensagens e as imprime.
 
