@@ -30,3 +30,10 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 - **Filas anônimas**: são filas criadas dinamicamente por demanda. Ao criar uma fila anônima, seu provider *AMQP* recebe no código o nome da fila, criado dinamicamente pelo *RabbitMQ*. 
 - **Durável ou não durável:** A fila persiste entre *restarts* do RabbitMQ?
 - **Exclusiva ou não exclusiva:** somente 1 consumidos poderá consumir a fila, e quando o consumidor cair a fila será deletada. 
+
+# Exemplo 1
+ 
+Retirado da [documentação](https://www.rabbitmq.com/tutorials/tutorial-one-dotnet.html) exemplo contendo um produtor que envia uma única mensagem e um consumidor que recebe as mensagens e as imprime.
+
+![figura-representativa](https://www.rabbitmq.com/img/tutorials/python-one.png)
+
