@@ -3,9 +3,9 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 
 ## Resumo sobre os papéis na mensageria utilizando RabbitMQ
 
-- **Ator**: qualquer parte do código, pode ser um serviço, um sistema inteiro, alguém que realiza uma operação.
+- **Ator**: qualquer parte do código, podendo ser um serviço ou um sistema inteiro, capaz de realizar uma operação. 
 
-- **Producer**: um producer publisher é um ator que publica uma mensagem no *message broker*. Embora possa se ter o ímpetto de pensar: "é quem publica uma mensagem na fila", na prática vamos ver que há um intermediador, que é a *exchage*, sendo o seu papel no fluxo de validar essa informação. Portanto: alguém que está tentando publicar uma mensagem no message broker. 
+- **Producer**: um producer/publisher é um ator que publica uma mensagem no *message broker*. Embora possa se ter o ímpeto de pensar: "é quem publica uma mensagem na fila", na prática existe um intermediador, que é a *exchage*, sendo o seu papel no fluxo de validar essa informação. Portanto: alguém que está tentando publicar uma mensagem no message broker. 
 
 - **Consumer**: é um ator que consume mensagens de uma ou mais filas. Representa quem realiza o processamento de uma mensagem que está na fila. 
 
@@ -18,7 +18,7 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 - **Exchange**: é um objeto programável de **roteamento**. Isso quer dizer, que pode definir um conjunto de regras de **roteamento**. Essas regras podem fazer uma mensagem ir direto para uma fila, ou mesmo ser distribuída em diversas filas ou em outros casos ser descartada. Um *publisher*, sempre envia mensagem para uma *exchange*. **No RabbitMQ, não existe envio de mensagem direto para filas.**
 
 ### Tipos de exchanges:
-    - Direct: exerce o papel de uma exchange fake, pois ela não toma decisão alguma, ela não possui nome, faz um bypass para enviar a mensagem para a fila que possui o nome que foi definida. 
+    - Direct: exerce o papel de uma exchange fake, pois ela não toma decisãp, ela não possui nome, faz um bypass para enviar a mensagem para a fila que possui o nome que foi definida. 
     - Fanout
     - Topic
     - Headers
@@ -28,7 +28,7 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 
 - **Filas nomeadas:** possuem um nome pré-definido. São filas que possuem "CPF", o nome dela tem relevância para sua implantação.
 - **Filas anônimas**: são filas criadas dinamicamente por demanda. Ao criar uma fila anônima, seu provider *AMQP* recebe no código o nome da fila, criado dinamicamente pelo *RabbitMQ*. 
-- **Durável ou não durável:** A fila persiste entre *restarts* do RabbitMQ?
+- **Durável ou não durável:** Determina se a fila persiste entre *restarts* do RabbitMQ.
 - **Exclusiva ou não exclusiva:** somente 1 consumidos poderá consumir a fila, e quando o consumidor cair a fila será deletada. 
 
 ## Desconexão com RabbitMQ - *API Guide*
