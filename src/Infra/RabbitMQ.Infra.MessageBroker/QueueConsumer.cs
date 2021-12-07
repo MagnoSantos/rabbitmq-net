@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using RabbitMQ.Consumer.Domain;
-using RabbitMQ.Domain.Interfaces;
+using RabbitMQ.Infra.MessageBroker.Interfaces;
+using RabbitMQ.Infra.MessageBroker.Options;
 using System;
 using System.Text;
 using System.Text.Json;
@@ -20,6 +19,8 @@ namespace RabbitMQ.Infra.MessageBroker
 
         public void Subscribe<TMessage>()
         {
+            _queueFactory.CreateQueue();
+
             var consumer = _queueFactory.CreateConsumer((ch, ea) =>
             {
                 try
@@ -27,7 +28,7 @@ namespace RabbitMQ.Infra.MessageBroker
                     TMessage data = default;
 
                     string message = Encoding.UTF8.GetString(ea.Body.ToArray());
-                    data = JsonConvert.DeserializeObject<TMessage>(message);
+                    data = JsonSerializer.Deserialize<TMessage>(message);
 
                     Channel.BasicAck(ea.DeliveryTag, multiple: false);
                 }

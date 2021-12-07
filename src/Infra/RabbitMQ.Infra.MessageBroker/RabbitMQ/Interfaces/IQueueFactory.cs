@@ -1,7 +1,7 @@
 ﻿using RabbitMQ.Client.Events;
 using System;
 
-namespace RabbitMQ.Domain.Interfaces
+namespace RabbitMQ.Infra.MessageBroker.Interfaces
 {
     public interface IQueueFactory
     {

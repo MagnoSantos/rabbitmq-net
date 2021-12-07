@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using RabbitMQ.Consumer.Domain;
-using RabbitMQ.Domain.Interfaces;
+using RabbitMQ.Infra.MessageBroker.Interfaces;
+using RabbitMQ.Infra.MessageBroker.Options;
 using System;
 
 namespace RabbitMQ.Infra.MessageBroker

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
-using RabbitMQ.Consumer.Domain;
+using RabbitMQ.Infra.MessageBroker.Options;
 using System;
 
 namespace RabbitMQ.Infra.MessageBroker

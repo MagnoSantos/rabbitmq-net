@@ -1,4 +1,4 @@
-﻿namespace RabbitMQ.Consumer.Domain
+﻿namespace RabbitMQ.Infra.MessageBroker.Options
 {
     public class RabbitMQOptions
     {

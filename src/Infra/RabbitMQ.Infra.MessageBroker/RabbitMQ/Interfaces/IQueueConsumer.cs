@@ -1,4 +1,4 @@
-﻿namespace RabbitMQ.Domain.Interfaces
+﻿namespace RabbitMQ.Infra.MessageBroker.Interfaces
 {
     public interface IQueueConsumer
     {
