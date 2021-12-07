@@ -4,17 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:44962",
-      "sslPort": 44367
+      "applicationUrl": "http://localhost:16928",
+      "sslPort": 44324
     }
   },
   "profiles": {
-    "RabbitMQ.BackgroundServices.Producer": {
+    "RabbitMQ.Api.Producer": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7204;http://localhost:5204",
+      "applicationUrl": "https://localhost:7073;http://localhost:5073",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

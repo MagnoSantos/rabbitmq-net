@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\1-Consumer\RabbitMQ.BackgroundServices.Worker\RabbitMQ.BackgroundServices.Worker.csproj" />
-    <ProjectReference Include="..\Infra\RabbitMQ.Infra.MessageBroker\RabbitMQ.Infra.MessageBroker.csproj" />
   </ItemGroup>
 
 </Project>
