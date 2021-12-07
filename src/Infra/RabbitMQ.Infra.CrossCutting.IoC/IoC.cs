@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RabbitMQ.Consumer.Domain;
-using RabbitMQ.Domain.Interfaces;
 using RabbitMQ.Infra.MessageBroker;
+using RabbitMQ.Infra.MessageBroker.Interfaces;
+using RabbitMQ.Infra.MessageBroker.Options;
 
 namespace RabbitMQ.Infra.CrossCutting.IoC
 {
