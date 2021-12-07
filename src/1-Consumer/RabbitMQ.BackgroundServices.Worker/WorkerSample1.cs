@@ -20,7 +20,7 @@ namespace RabbitMQ.Consumer.Worker
         }
 
         /// <summary>
-        /// Exemplo 1 - Postagem e consumo de mensagem de uma fila
+        /// Exemplo 1 - Consumo de mensagem de uma fila
         /// </summary>
         /// <param name="stoppingToken"></param>
         /// <returns></returns>
