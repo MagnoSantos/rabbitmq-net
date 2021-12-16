@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace RabbitMQ.Consumer.Worker
 {
-    public class WorkerSample1 : BackgroundService
+    public class Worker : BackgroundService
     {
-        private readonly IQueueFactory _queueFactory;
         private readonly IQueueConsumer _queueConsumer;
-        private readonly ILogger<WorkerSample1> _logger;
+        private readonly ILogger<Worker> _logger;
 
-        public WorkerSample1(IQueueFactory queueFactory, ILogger<WorkerSample1> logger, IQueueConsumer queueConsumer)
+        public Worker(IQueueFactory queueFactory, ILogger<Worker> logger, IQueueConsumer queueConsumer)
         {
-            _queueFactory = queueFactory ?? throw new ArgumentNullException(nameof(queueFactory));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _queueConsumer = queueConsumer ?? throw new ArgumentNullException(nameof(queueConsumer));
         }
 
         /// <summary>
-        /// Exemplo 1 - Postagem e consumo de mensagem de uma fila
+        /// Exemplo - Postagem na fila com exchange e TTL
         /// </summary>
         /// <param name="stoppingToken"></param>
         /// <returns></returns>
@@ -30,11 +28,8 @@ namespace RabbitMQ.Consumer.Worker
         {
             stoppingToken.ThrowIfCancellationRequested();
 
-            _logger.LogInformation("Criando filas");
-            _queueFactory.CreateQueue();
-            _logger.LogInformation("Filas criadas");
-
             _logger.LogInformation("Cadastrando consumidor");
+            ///Objeto fábrica para criar e configurar instâncias Task - Task.StartNew cria e inicia uma nova tarefa em uma única chamada
             await Task.Factory.StartNew(action: () => _queueConsumer.Subscribe<Message>(), stoppingToken);
             _logger.LogInformation("Consumidor cadastrado");
         }

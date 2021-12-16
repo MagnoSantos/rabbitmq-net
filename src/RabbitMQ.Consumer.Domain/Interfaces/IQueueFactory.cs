@@ -5,7 +5,7 @@ namespace RabbitMQ.Domain.Interfaces
 {
     public interface IQueueFactory
     {
-        void CreateQueue();
+        void CreateQueues();
 
         EventingBasicConsumer CreateConsumer(EventHandler<BasicDeliverEventArgs> received);
     }

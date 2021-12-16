@@ -15,3 +15,13 @@ services:
 networks:
   rabbitmq_net:
     driver: bridge
+
+
+#RabbitConfig__ConsumerQueue=billing.monitor-consumer
+#RabbitConfig__DeadLetterExchangeQueue=billing.monitor-dead-letter-exchange
+#RabbitConfig__MonitorBatchExchangeQueue=billing.monitor-batch-exchange
+#RabbitConfig__ConsumerExchangeQueue=billing.monitor-consumer-exchange
+#RabbitConfig__TimeToLiveInMilisseconds=5000
+#Logging__LogLevel__Default=Information
+
+#docker run --rm --env-file=file <docker-image>
