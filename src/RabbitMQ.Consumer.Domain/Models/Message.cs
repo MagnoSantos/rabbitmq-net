@@ -10,7 +10,7 @@ namespace RabbitMQ.Domain.Models
         /// </summary>
         [JsonProperty("data")]
         public string Data { get; set; }
-        public Guid CorrelationId { get; set; } = Guid.NewGuid();
+        public Guid CorrelationId { get; set; } 
     }
 
     public interface IMessage

@@ -13,7 +13,7 @@ namespace RabbitMQ.Consumer.Worker
         private readonly IQueueConsumer _queueConsumer;
         private readonly ILogger<Worker> _logger;
 
-        public Worker(IQueueFactory queueFactory, ILogger<Worker> logger, IQueueConsumer queueConsumer)
+        public Worker(IQueueConsumer queueConsumer, ILogger<Worker> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _queueConsumer = queueConsumer ?? throw new ArgumentNullException(nameof(queueConsumer));
