@@ -42,10 +42,12 @@ conn.Close();
 
 Realizar o *dispose* dos objetos de um canal e conexão não são suficientes, eles devem ser feachados explicitamente com os métodos de API do exemplo acima. 
 
-## Exemplo 1
- 
-Retirado da [documentação](https://www.rabbitmq.com/tutorials/tutorial-one-dotnet.html) exemplo contendo um produtor que envia uma única mensagem e um consumidor que recebe as mensagens e as imprime.
+## Exemplo 
+
+Neste repositório foi desenvolvido o esquema representado abaixo: 
 
 ![sample-worker-rabbit-mq](https://user-images.githubusercontent.com/20459937/146868497-3bebc7a7-ab34-4d68-8b1c-3ee1364444c8.png)
+
+Note que existe uma fila de aguardo com time to live definido, o exchange para essa fila é a fila de consumo que possui a implementação de uma política de resiliência de retentativa e, um contador para máximo de reprocessamento. Por fim, é enviado a uma fila de DeadLetter, que por sua vez pode ser processada como inspeção manual. 
 
 
