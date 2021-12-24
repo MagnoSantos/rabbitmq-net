@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Infra.CrossCutting
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Infra.MessageBroker", "Infra\RabbitMQ.Infra.MessageBroker\RabbitMQ.Infra.MessageBroker.csproj", "{D3FE78AC-0A31-4D07-B96C-92D102ED1F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Tests.UnitTests", "RabbitMQ.Tests.UnitTests\RabbitMQ.Tests.UnitTests.csproj", "{F5715467-9BE9-40FC-887F-020A27FD0429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Tests.UnitTests", "RabbitMQ.Tests.UnitTests\RabbitMQ.Tests.UnitTests.csproj", "{F5715467-9BE9-40FC-887F-020A27FD0429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

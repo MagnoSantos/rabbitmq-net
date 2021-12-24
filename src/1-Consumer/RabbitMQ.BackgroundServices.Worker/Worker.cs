@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace RabbitMQ.Consumer.Worker
 {
     [ExcludeFromCodeCoverage]
-    public class WorkerSample1 : BackgroundService
+    public class Worker : BackgroundService
     {
         private readonly IQueueConsumer _queueConsumer;
-        private readonly ILogger<WorkerSample1> _logger;
+        private readonly ILogger<Worker> _logger;
 
-        public WorkerSample1(IQueueFactory queueFactory, ILogger<WorkerSample1> logger, IQueueConsumer queueConsumer)
+        public Worker(IQueueFactory queueFactory, ILogger<Worker> logger, IQueueConsumer queueConsumer)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _queueConsumer = queueConsumer ?? throw new ArgumentNullException(nameof(queueConsumer));

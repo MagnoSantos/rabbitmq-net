@@ -19,7 +19,7 @@ namespace RabbitMQ.Infra.MessageBroker
 
         public void Subscribe<TMessage>()
         {
-            _queueFactory.CreateQueue();
+            _queueFactory.CreateQueues();
 
             var consumer = _queueFactory.CreateConsumer((ch, ea) =>
             {
@@ -36,13 +36,12 @@ namespace RabbitMQ.Infra.MessageBroker
                 {
                     Logger.LogError("Erro ao desserializar mensagem", ex.Message);
 
-                    //TODO: Adicionar fila de DLQ
                     Channel.BasicNack(ea.DeliveryTag, multiple: false, requeue: false);
                 }
             });
 
             Channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            Channel.BasicConsume(Options.ConsumerQueue, autoAck: false, string.Empty, false, false, null, consumer);
+            Channel.BasicConsume(Options.ConsumingQueue, autoAck: false, string.Empty, false, false, null, consumer);
         }
     }
 }

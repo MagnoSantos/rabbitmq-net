@@ -5,6 +5,7 @@ using RabbitMQ.Client.Events;
 using RabbitMQ.Infra.MessageBroker.Interfaces;
 using RabbitMQ.Infra.MessageBroker.Options;
 using System;
+using System.Collections.Generic;
 
 namespace RabbitMQ.Infra.MessageBroker
 {
@@ -14,10 +15,50 @@ namespace RabbitMQ.Infra.MessageBroker
         {
         }
 
-        public void CreateQueue()
+        public void CreateQueues()
         {
-            Channel.ExchangeDeclare(Options.ConsumerExchangeQueue, ExchangeType.Direct, durable: true);
-            Channel.QueueDeclare(Options.ConsumerQueue, durable: true, exclusive: false, autoDelete: false, arguments: null);
+            WaitQueue();
+            ConsumerQueue();
+            CreateDeadLetterQueue();
+        }
+
+        private void WaitQueue()
+        {
+            /*Direct: encaminha mensagens que possuam exatamente a mesma rota das filas associadas.
+            /Exemplo: Uma fila se associa a um exchange com a rota foo. Quando uma nova mensagem com a rota foo chega no direct exchange ele a encaminha para a fila foo.*/
+            Channel.ExchangeDeclare(Options.WaitExchangeQueue, ExchangeType.Direct, durable: true);
+
+            Channel.QueueDeclare(Options.WaitQueue, durable: true, exclusive: false, autoDelete: false, arguments: new Dictionary<string, object>
+            {
+                ["x-dead-letter-exchange"] = Options.ConsumingExchangeQueue,
+                ["x-dead-letter-routing-key"] = Options.ConsumingQueue,
+                ["x-message-ttl"] = Options.TimeToLiveInMilisseconds
+            });
+
+            Channel.QueueBind(queue: Options.WaitQueue, exchange: Options.WaitExchangeQueue, routingKey: Options.WaitQueue);
+        }
+
+        private void ConsumerQueue()
+        {
+            Channel.ExchangeDeclare(Options.ConsumingExchangeQueue, ExchangeType.Direct, durable: true);
+
+            Channel.QueueDeclare(Options.ConsumingQueue, durable: true, exclusive: false, autoDelete: false, arguments: new Dictionary<string, object>
+            {
+                ["x-dead-letter-exchange"] = Options.DeadLetterExchangeQueue,
+                ["x-dead-letter-routing-key"] = Options.DeadLetterQueue
+            });
+
+            Channel.QueueBind(queue: Options.ConsumingQueue, exchange: Options.ConsumingExchangeQueue, routingKey: Options.ConsumingQueue);
+        }
+
+        private void CreateDeadLetterQueue()
+        {
+            /*Fanout:  Seu comportamento resume-se em mandar uma cópia das mensagens para todas as filas que estão associadas a ele.*/
+            Channel.ExchangeDeclare(Options.DeadLetterExchangeQueue, ExchangeType.Fanout, durable: true, autoDelete: false);
+
+            Channel.QueueDeclare(Options.DeadLetterQueue, durable: true, exclusive: false, autoDelete: false);
+
+            Channel.QueueBind(queue: Options.DeadLetterQueue, exchange: Options.DeadLetterExchangeQueue, routingKey: Options.DeadLetterQueue);
         }
 
         public EventingBasicConsumer CreateConsumer(EventHandler<BasicDeliverEventArgs> received)

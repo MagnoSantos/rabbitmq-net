@@ -19,8 +19,8 @@ namespace RabbitMQ.Infra.MessageBroker
             {
                 var body = Encoding.UTF8.GetBytes(message);
 
-                Channel.BasicPublish(exchange: Options.ConsumerExchangeQueue,
-                                     routingKey: Options.ConsumerQueue, 
+                Channel.BasicPublish(exchange: Options.ConsumingExchangeQueue,
+                                     routingKey: Options.ConsumingQueue, 
                                      mandatory: false,
                                      basicProperties: null, 
                                      body: body);
