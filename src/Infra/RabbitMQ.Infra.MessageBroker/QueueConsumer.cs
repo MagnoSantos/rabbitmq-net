@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Domain.Dtos;
+using RabbitMQ.Domain.Services;
 using RabbitMQ.Infra.MessageBroker.Interfaces;
 using RabbitMQ.Infra.MessageBroker.Options;
 using System;
@@ -11,10 +13,13 @@ namespace RabbitMQ.Infra.MessageBroker
     public class QueueConsumer : BaseQueues, IQueueConsumer
     {
         private readonly IQueueFactory _queueFactory;
+        private readonly ISampleService _sampleService;
 
-        public QueueConsumer(ILogger<QueueConsumer> logger, IOptions<RabbitMQOptions> options, IQueueFactory queueFactory) : base(logger, options)
+        public QueueConsumer(ILogger<QueueConsumer> logger, IOptions<RabbitMQOptions> options, IQueueFactory queueFactory, ISampleService sampleService) 
+            : base(logger, options)
         {
             _queueFactory = queueFactory ?? throw new ArgumentNullException(nameof(queueFactory));
+            _sampleService = sampleService ?? throw new ArgumentNullException(nameof(sampleService));
         }
 
         public void Subscribe<TMessage>()
@@ -29,6 +34,8 @@ namespace RabbitMQ.Infra.MessageBroker
 
                     string message = Encoding.UTF8.GetString(ea.Body.ToArray());
                     data = JsonSerializer.Deserialize<TMessage>(message);
+
+                    _sampleService.Execute(data as Message, ea.BasicProperties);
 
                     Channel.BasicAck(ea.DeliveryTag, multiple: false);
                 }

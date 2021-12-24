@@ -3,9 +3,11 @@ using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Infra.MessageBroker.Options;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RabbitMQ.Infra.MessageBroker
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseQueues : IDisposable
     {
         protected readonly ILogger Logger;

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RabbitMQ.Infra.CrossCutting.IoC;
 using System.IO;
 using System.Threading.Tasks;
-using RabbitMQ.Infra.CrossCutting.IoC;
 
 namespace RabbitMQ.Consumer.Worker
 {
@@ -24,7 +24,7 @@ namespace RabbitMQ.Consumer.Worker
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.ConfigureContainer(hostContext.Configuration);
-                    services.AddHostedService<Worker>();
+                    services.AddHostedService<BackgroundServiceConsumer>();
                 });
     }
 }
