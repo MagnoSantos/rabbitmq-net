@@ -3,11 +3,13 @@ using Microsoft.Extensions.Logging;
 using RabbitMQ.BackgroundServices.Worker.Dtos;
 using RabbitMQ.Infra.MessageBroker.Interfaces;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace RabbitMQ.Consumer.Worker
 {
+    [ExcludeFromCodeCoverage]
     public class WorkerSample1 : BackgroundService
     {
         private readonly IQueueConsumer _queueConsumer;

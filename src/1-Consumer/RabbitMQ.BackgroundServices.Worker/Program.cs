@@ -24,7 +24,7 @@ namespace RabbitMQ.Consumer.Worker
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.ConfigureContainer(hostContext.Configuration);
-                    services.AddHostedService<WorkerSample1>();
+                    services.AddHostedService<Worker>();
                 });
     }
 }
