@@ -18,7 +18,7 @@ Repositório para praticar conhecimentos acerca do message broker RabbitMQ.
 - **Exchange**: é um objeto programável de **roteamento**. Isso quer dizer, que pode definir um conjunto de regras de **roteamento**. Essas regras podem fazer uma mensagem ir direto para uma fila, ou mesmo ser distribuída em diversas filas ou em outros casos ser descartada. Um *publisher*, sempre envia mensagem para uma *exchange*. **No RabbitMQ, não existe envio de mensagem direto para filas.**
 
 ### Tipos de exchanges:
-    - Direct: exerce o papel de uma exchange fake, pois ela não toma decisãp, ela não possui nome, faz um bypass para enviar a mensagem para a fila que possui o nome que foi definida. 
+    - Direct
     - Fanout
     - Topic
     - Headers
