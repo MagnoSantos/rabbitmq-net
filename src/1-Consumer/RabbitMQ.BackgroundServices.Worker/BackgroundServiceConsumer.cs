@@ -39,7 +39,7 @@ namespace RabbitMQ.Consumer.Worker
             _logger.LogInformation("Publicando mensagem na fila");
             var message = new Message(new Customer
             {
-                Cpf = "12567763600",
+                Cpf = "12345678900",
                 LastName = "Santos",
                 Name = "Magno"
             });
